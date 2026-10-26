@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Cipher Utility Studio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif}.font-mono-custom{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-6">
+<div id="_eb" class="hidden mb-4 p-4 bg-rose-950 border border-rose-500 rounded-xl text-rose-200 font-mono text-xs overflow-auto"></div>
+<div class="max-w-6xl mx-auto flex flex-col gap-5">
+<header class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+<div><h1 class="text-xl font-bold text-white">Cipher Utility Studio</h1><p class="text-slate-400 text-xs">Modular carry cipher engine.</p></div>
+<button id="_br" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg">Reset</button>
+</header>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col"><div class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Base (5x5)</div><div id="_g0" class="grid grid-cols-5 gap-1.5 font-mono-custom text-center my-auto"></div></div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col"><div class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Master (5x5)</div><div id="_g1" class="grid grid-cols-5 gap-1.5 font-mono-custom text-center my-auto"></div></div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col"><div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">Blueprint (5x5)</div><div id="_g2" class="grid grid-cols-5 gap-1.5 font-mono-custom text-center my-auto"></div></div>
+<div class="bg-slate-800 border border-purple-500/50 rounded-xl p-4 flex flex-col ring-1 ring-purple-500/30"><div class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-1">Transit (5x5)</div><div id="_g3" class="grid grid-cols-5 gap-1.5 font-mono-custom text-center my-auto"></div></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col justify-between"><label class="block text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Password</label><input type="text" id="_pw" value="God bless the United States of America" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono-custom text-xs focus:outline-none focus:border-indigo-500"></div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col justify-between"><label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">First Name</label><input type="text" id="_fn" value="Donald" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono-custom text-xs focus:outline-none focus:border-indigo-500"></div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col justify-between"><label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">Last Name</label><input type="text" id="_ln" value="Trump" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-white font-mono-custom text-xs focus:outline-none focus:border-indigo-500"></div>
+</div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4"><label class="block text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">Secret Message</label><textarea id="_sm" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white font-mono-custom text-xs focus:outline-none focus:border-indigo-500">classified</textarea></div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+<div><div class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-1">Active Alphabet (Transit Key)</div><div id="_ak" class="font-mono-custom font-bold text-purple-300 text-sm tracking-widest select-none">---</div></div>
+<div id="_kb" class="text-xs font-mono-custom px-3 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Length: 25 / 25</div>
+</div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3 pb-3 border-b border-slate-700">
+<div><h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Multi-Block Vectors</h2></div>
+<div class="bg-purple-500/10 border border-purple-500/30 px-3 py-1.5 rounded-lg font-mono-custom"><span class="text-xs text-slate-400">Ciphertext: </span><span id="_fc" class="text-base font-bold text-purple-300">---</span></div>
+</div>
+<div id="_bc" class="flex flex-col gap-4"></div>
+</div>
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-4">
+<div class="flex justify-between items-center mb-3"><h2 class="text-sm font-bold text-white uppercase tracking-wider">25-Iteration Shift Matrix</h2><button id="_cp" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-xs text-white font-mono-custom rounded">Copy</button></div>
+<div class="overflow-x-auto max-h-80"><table class="w-full text-left text-xs font-mono-custom"><tbody id="_st"></tbody></table></div>
+</div>
+</div>
+<script>
+const _A="abcdefghijlmnopqrstuvwxyz";
+const _p=document.getElementById('_pw'),_f=document.getElementById('_fn'),_l=document.getElementById('_ln'),_s=document.getElementById('_sm');
+const _g0=document.getElementById('_g0'),_g1=document.getElementById('_g1'),_g2=document.getElementById('_g2'),_g3=document.getElementById('_g3');
+const _ak=document.getElementById('_ak'),_kb=document.getElementById('_kb'),_bc=document.getElementById('_bc'),_fc=document.getElementById('_fc'),_st=document.getElementById('_st');
+const _br=document.getElementById('_br'),_cp=document.getElementById('_cp'),_eb=document.getElementById('_eb');
+
+function _l2i(c){if(!c)return null;let l=c.toLowerCase();if(l==='k')l='c';let cd=l.charCodeAt(0);if(cd>=97&&cd<=105)return cd-96;if(cd===106)return 10;if(cd>=108&&cd<=122)return cd-97;return null;}
+function _i2l(i){return(i>=1&&i<=25)?_A[i-1].toUpperCase():'?';}
+function _parse(t){if(!t)return[];let r=[];for(let c of t){let idx=_l2i(c);if(idx!==null)r.push(idx);}return r;}
+function _enc(i,k){return(k&&k.length===25&&i>=1&&i<=25)?k[i-1]:'?';}
+function _sh(q,sh){if(!q)return'';let r='';for(let c of q){let p=_A.indexOf(c.toLowerCase());r+=p!==-1?_A[(p+sh)%25].toUpperCase():c;}return r;}
+function _sub(q,k){if(!q)return'';let r='';for(let c of q){let p=_A.indexOf(c.toLowerCase());r+=p!==-1&&k&&k.length===25?k[p].toUpperCase():c;}return r;}
+
+function _genM(pw){
+  let m=new Array(25).fill(null),pp=_parse(pw);if(!pp.length)return _A.toUpperCase();
+  let ptr=0;for(let i=0;i<25;i++){let t=pp[ptr%pp.length],sl=t-1;while(m[sl]!==null)sl=(sl+1)%25;m[sl]=_A[i].toUpperCase();ptr++;}return m.join('');
+}
+
+function _genB(mk,fn,ln){
+  let bg=[];for(let r=0;r<5;r++){let row=[];for(let c=0;c<5;c++)row.push(_A[r*5+c].toUpperCase());bg.push(row);}
+  let bg2=[];for(let r=0;r<5;r++){let row=[];for(let c=0;c<5;c++)row.push(mk[r*5+c]);bg2.push(row);}
+  let fnP=_parse(fn);if(!fnP.length)fnP=[1];
+  let rLbl=new Array(5).fill(null),rAsn=new Array(5).fill(false),cnt=0;
+  for(let i=0;i<4;i++){let v=fnP[i%fnP.length],tg=_A[(v-1)%25].toUpperCase(),fr=-1;
+  for(let r=0;r<5;r++)if(bg[r].includes(tg)){fr=r;break;}if(fr===-1)fr=i%5;let tr=fr;while(rAsn[tr])tr=(tr+1)%5;rLbl[tr]=cnt;rAsn[tr]=true;cnt++;}
+  for(let r=0;r<5;r++)if(!rAsn[r]){rLbl[r]=cnt;cnt++;}
+  let sRow=rLbl.map((l,i)=>({l,i})).sort((a,b)=>a.l-b.l).map(x=>x.i);
+  let nBg=sRow.map(r=>[...bg[r]]),nBp=sRow.map(r=>[...bg2[r]]);
+  let lnP=_parse(ln);if(!lnP.length)lnP=[1];
+  let cLbl=new Array(5).fill(null),cAsn=new Array(5).fill(false),cnt2=0;
+  for(let i=0;i<4;i++){let v=lnP[i%lnP.length],tg=_A[(v-1)%25].toUpperCase(),fc=-1;
+  for(let c=0;c<5;c++){let h=false;for(let r=0;r<5;r++)if(nBg[r][c]===tg){h=true;break;}if(h){fc=c;break;}}if(fc===-1)fc=i%5;let tc=fc;while(cAsn[tc])tc=(tc+1)%5;cLbl[tc]=cnt2;cAsn[tc]=true;cnt2++;}
+  for(let c=0;c<5;c++)if(!cAsn[c]){cLbl[c]=cnt2;cnt2++;}
+  let sCol=cLbl.map((l,i)=>({l,i})).sort((a,b)=>a.l-b.l).map(x=>x.i);
+  let fGrid=[],bk='';for(let r=0;r<5;r++){let row=[];for(let c=0;c<5;c++){let oc=sCol[c],ch=nBp[r][oc];row.push(ch);bk+=ch;}fGrid.push(row);}
+  return{blueprintKey:bk,finalBlueprintGrid:fGrid};
+}
+
+function _genT(bk){
+  let tr=new Array(25).fill('?');for(let a=0;a<25;a++){let mc=bk[a],bi=_A.indexOf(mc.toLowerCase());if(bi!==-1)tr[bi]=_A[a].toUpperCase();}
+  return{transitKey:tr.join(''),transitArray:tr};
+}
+
+function _calc(){
+  try{
+    _eb.classList.add('hidden');
+    let pw=_p.value,fn=_f.value,ln=_l.value,ms=_s.value;
+    let mk=_genM(pw),{blueprintKey:bk,finalBlueprintGrid:bg}=_genB(mk,fn,ln),{transitKey:tk,transitArray:ta}=_genT(bk);
+    _ak.textContent=tk;_kb.textContent=`Length: ${tk.length} / 25`;
+    _g0.innerHTML='';for(let i=0;i<25;i++)_g0.innerHTML+=`<div class="bg-slate-900 border border-slate-700/80 p-1.5 rounded"><div class="text-[8px] text-slate-500">${i+1}</div><div class="font-bold text-indigo-300 text-sm">${_A[i].toUpperCase()}</div></div>`;
+    _g1.innerHTML='';for(let i=0;i<25;i++)_g1.innerHTML+=`<div class="bg-slate-900 border border-emerald-500/30 p-1.5 rounded"><div class="text-[8px] text-slate-500">${i+1}</div><div class="font-bold text-emerald-400 text-sm">${mk[i]}</div></div>`;
+    _g2.innerHTML='';for(let r=0;r<5;r++)for(let c=0;c<5;c++)_g2.innerHTML+=`<div class="bg-slate-900 border border-amber-500/40 p-1.5 rounded"><div class="text-[8px] text-slate-500">${r},${c}</div><div class="font-bold text-amber-400 text-sm">${bg[r][c]}</div></div>`;
+    _g3.innerHTML='';for(let i=0;i<25;i++)_g3.innerHTML+=`<div class="bg-slate-900 border border-purple-500/50 p-1.5 rounded"><div class="text-[8px] text-slate-500">${i+1}</div><div class="font-bold text-purple-300 text-sm">${ta[i]}</div></div>`;
+    
+    let pMsg=_parse(ms),chunks=[];if(!pMsg.length)chunks.push([]);else for(let i=0;i<pMsg.length;i+=10)chunks.push(pMsg.slice(i,i+10));
+    let skP=_parse(pw).slice(1),carry=25,ptr=0,bOut=[];
+    _bc.innerHTML='';
+    chunks.forEach((ch,bi)=>{
+      let fl=0,a=0;for(let v of ch){a+=v;if(a>=25){fl+=Math.floor(a/25);a%=25;}}
+      let tot=(fl*25)+a,len=Math.floor(tot/10),ver=tot%10,tail=len+ver;
+      let smV=new Array(13).fill(0);smV[0]=len;smV[1]=ver;
+      for(let i=0;i<10;i++)smV[2+i]=i<ch.length?ch[i]:((bi*7+i*3+len+ver)%25)+1;
+      smV[12]=tail;
+      
+      let card=document.createElement('div');card.className='bg-slate-900 p-3 rounded-lg border border-slate-700/80';
+      card.innerHTML=`<div class="flex justify-between gap-2 mb-2"><span class="text-xs font-bold text-purple-400">Block ${bi+1}</span><span class="text-[10px] text-slate-400 font-mono-custom">L:${len}(${_i2l(len)}) V:${ver}(${_i2l(ver)}) T:${tail}(${_i2l(tail)})</span></div><div class="flex flex-wrap gap-1.5 font-mono-custom text-xs">`+
+      smV.map((nv,idx)=>{let cv=(idx<=1||idx===12)?_enc(nv,tk):_i2l(nv);return`<div class="flex flex-col items-center px-2 py-1 rounded border ${idx===12?'bg-amber-500/20 border-amber-500/40':idx<=1?'bg-emerald-500/20 border-emerald-500/40':'bg-slate-950 border-slate-700'}"><span class="text-[9px] text-slate-500">[${idx}]</span><span class="font-bold text-sm ${idx===12?'text-amber-300':idx<=1?'text-emerald-300':'text-indigo-300'}">${cv}</span></div>`;}).join('')+'</div>';
+      _bc.appendChild(card);
+      
+      let bTxt='';for(let st=0;st<smV.length;st++){let mv=smV[st],pv=skP.length?skP[ptr%skP.length]:0;ptr++;let sum=carry+mv+pv,rem=sum%25;if(rem===0)rem=25;carry=Math.floor(sum/25);bTxt+=_enc(rem,tk);}
+      let bCr=_enc((carry%25)||25,tk);if(bi===0)bTxt+=bCr;bOut.push(bTxt);
+    });
+    let fullC=bOut.join(' ');_fc.textContent=fullC;
+    _st.innerHTML='';for(let st=0;st<25;st++)_st.innerHTML+=`<tr class="${st%2==0?'bg-slate-900/50':'bg-slate-800/30'}"><td class="p-2 text-center text-slate-500">${String(st).padStart(2,'0')}</td><td class="p-2 text-indigo-300">${_sh(fullC,st)}</td><td class="p-2 text-purple-300 font-bold">${_sub(_sh(fullC,st),tk)}</td></tr>`;
+  }catch(e){_eb.textContent="Error: "+e.message;_eb.classList.remove('hidden');}
+}
+[_p,_f,_l,_s].forEach(e=>e.addEventListener('input',_calc));
+_br.addEventListener('click',()=>{_p.value="God bless the United States of America";_fn.value="Donald";_ln.value="Trump";_s.value="classified";_calc();});
+_cp.addEventListener('click',()=>{let txt='';_st.querySelectorAll('tr').forEach(r=>{let c=r.querySelectorAll('td');if(c.length===3)txt+=`${c[0].textContent} | ${c[1].textContent.padEnd(20,' ')} | ${c[2].textContent}\n`;});navigator.clipboard.writeText(txt);alert('Copied!');});
+_calc();
+</script>
+</body>
+</html>
